@@ -1,3 +1,4 @@
+import getpass
 import time
 import schedule
 from selenium import webdriver
@@ -11,12 +12,12 @@ service = Service(ChromeDriverManager().install())
 
 # Credenciais
 BEEHOME_URL = "https://pernambucanas.mybeehome.com/login"
-USUARIO = "923421@pernambucanas.com.br"
-SENHA = "Mezuza2024$"
+USUARIO = input("Digite sua chapa: ")
+SENHA = getpass.getpass("Digite a senha do Beehome: ")
 
 # Destinatário e mensagem
-DESTINATARIO = "Anotações"
-MENSAGEM = "Olha que lagal! Essa mensagem foi automática!!!"
+DESTINATARIO = input("Pra quem você vai enviar a mensagem? ")
+MENSAGEM = input("Mensagem: ")
 
 def enviar_mensagem():
     print("Iniciando navegador...")
@@ -30,7 +31,7 @@ def enviar_mensagem():
     try:
         campo_email = driver.find_element(By.XPATH, '//*[@id="username"]')  # Ajuste se necessário
         campo_senha = driver.find_element(By.XPATH, '/html/body/app-root/app-login/div/div[2]/div/div[1]/form/div/div[2]/div[1]/input')
-        campo_email.send_keys(USUARIO)
+        campo_email.send_keys(USUARIO + "@pernambucanas.com.br")
         campo_senha.send_keys(SENHA)
         campo_senha.send_keys(Keys.RETURN)
         time.sleep(7)  # Espera o login completar
@@ -67,7 +68,7 @@ def enviar_mensagem():
     driver.quit()  # Fecha o navegador
 
 # **Agendar a mensagem para as 9h da manhã**
-schedule.every().day.at("17:20").do(enviar_mensagem)
+schedule.every().day.at("11:05").do(enviar_mensagem)
 
 print("Agendador iniciado...")
 
