@@ -14,10 +14,11 @@ service = Service(ChromeDriverManager().install())
 BEEHOME_URL = "https://pernambucanas.mybeehome.com/login"
 USUARIO = input("Digite sua chapa: ")
 SENHA = getpass.getpass("Digite a senha do Beehome: ")
+SENHA_BI = getpass.getpass("Digite a senha do BI: ")
 
 # Destinatário e mensagem
-DESTINATARIO = input("Pra quem você vai enviar a mensagem? ")
-MENSAGEM = input("Mensagem: ")
+#DESTINATARIO = input("Pra quem você vai enviar a mensagem? ")
+#MENSAGEM = input("Mensagem: ")
 
 def enviar_mensagem():
     print("Iniciando navegador...")
@@ -65,10 +66,37 @@ def enviar_mensagem():
     except Exception as e:
         print("Erro ao enviar a mensagem:", e)
 
-    driver.quit()  # Fecha o navegador
+    driver.quit()
+      # Fecha o navegador
+def tirar_foto_BI():
+    print("Iniciando navegador...")
+    driver = webdriver.Chrome(service=service)
+    driver.get('https://app.powerbi.com/groups/me/apps/412ad779-7b38-406d-adaa-d96e44193086/reports/31fc42f0-7572-449c-a8f9-857fa6342de6/ReportSection?ctid=dbc92cdb-dde7-4d1b-ab84-8b2cfaf8134b&experience=power-bi')
+
+    # Aguarda a página carregar
+    time.sleep(5)
+
+    try:
+        campo_email = driver.find_element(By.XPATH, '//*[@id="email"]')  # Ajuste se necessário
+        time.sleep(3)  # Espera o login completar
+        campo_email = driver.find_element(By.XPATH, '//*[@id="i0118"]')
+        campo_senha = driver.find_element(By.XPATH, '//*[@id="i0118"]')
+        campo_email.send_keys(USUARIO + "@pernambucanas.com.br")
+        campo_senha.send_keys(SENHA_BI)
+        campo_senha.send_keys(Keys.RETURN)
+        time.sleep(7)  # Espera o login completar
+    except Exception as e:
+        print("Erro no login:", e)
+
+    # **Tira uma captura de tela**
+        screenshot_path = "screenshot.png"
+        driver.save_screenshot(screenshot_path)
+        print(f"Captura de tela salva em {screenshot_path}")
+
+    
 
 # **Agendar a mensagem para as 9h da manhã**
-schedule.every().day.at("11:05").do(enviar_mensagem)
+schedule.every().day.at("17:45").do(tirar_foto_BI)
 
 print("Agendador iniciado...")
 
