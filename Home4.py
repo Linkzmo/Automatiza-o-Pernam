@@ -15,9 +15,9 @@ import io
 
 # Criar o caminho dinâmico usando `os.getenv('USERNAME')`
 # chromedriver_path = r"C:\Users\{}\AppData\Local\SeleniumBasic\chromedriver.exe".format(os.getenv('USERNAME'))
-chromedriver_path = r"C:\Users\marce\Downloads\chrome-win64\chrome-win64\chromedriver.exe"
-# Criar um serviço com o caminho do ChromeDriver
-service = Service(chromedriver_path)
+
+# # Criar um serviço com o caminho do ChromeDriver
+service = Service('C:/Users/marce/OneDrive/Área de Trabalho/chrome-win64/chromedriver.exe')
 driver = webdriver.Chrome(service=service)
 
 # Credenciais
@@ -25,7 +25,7 @@ BEEHOME_URL = "https://pernambucanas.mybeehome.com/login"
 
 
 # Destinatário e mensagem
-DESTINATARIO = "Anot"
+DESTINATARIO = "anot"
 MENSAGEM = "SEGUE PENDÊNCIA POR ONDA"
 
 def mensagem_indicador2():

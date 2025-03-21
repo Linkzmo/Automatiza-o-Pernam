@@ -16,16 +16,16 @@ import io
 
 # Criar o caminho dinâmico usando `os.getenv('USERNAME')`
 # chromedriver_path = r"C:\Users\{}\AppData\Local\SeleniumBasic\chromedriver.exe".format(os.getenv('USERNAME'))
-chromedriver_path = r"C:\Users\marce\Downloads\chrome-win64\chrome-win64\chromedriver.exe"
-# Criar um serviço com o caminho do ChromeDriver
-service = Service(chromedriver_path)
+
+# # Criar um serviço com o caminho do ChromeDriver
+service = Service('C:/Users/marce/OneDrive/Área de Trabalho/chrome-win64/chromedriver.exe')
 driver = webdriver.Chrome(service=service)
 
 # Credenciais
 BEEHOME_URL = "https://pernambucanas.mybeehome.com/login"
 
 # Destinatário e mensagem
-DESTINATARIO = "Anot"
+DESTINATARIO = "anot"
 MENSAGEM = "SEGUE INDICADOR DE SEPARAÇÃO"
 
 def mensagem_indicador():
@@ -140,8 +140,9 @@ def mensagem_indicador():
     except Exception as e:
             print("Erro ao enviar a mensagem:", e)
 
-    driver.quit()  # Fecha o navegador
+    driver.quit()  
     mensagem_indicador2()
+    # Fecha o navegador
 # **Agendar a mensagem para as 9h da manhã**
 # schedule.every().day.at("18:57").do(mensagem_indicador)
 

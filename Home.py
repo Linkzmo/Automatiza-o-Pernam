@@ -15,10 +15,11 @@ import win32clipboard
 import io
 
 # Criar o caminho dinâmico usando `os.getenv('USERNAME')`
-chromedriver_path = r"C:\Users\{}\AppData\Local\SeleniumBasic\chromedriver.exe".format(os.getenv('USERNAME'))
+# chromedriver_path = r"C:\Users\{}\AppData\Local\SeleniumBasic\chromedriver.exe".format(os.getenv('USERNAME'))
+
 
 # Criar um serviço com o caminho do ChromeDriver
-service = Service(chromedriver_path)
+service = Service('C:/Users/marce/OneDrive/Área de Trabalho/chrome-win64/chromedriver.exe')
 driver = webdriver.Chrome(service=service)
 
 # Credenciais
@@ -118,7 +119,7 @@ def mensagem_obeya():
             time.sleep(5)
 
             # Seleciona o contato
-            contato = driver.find_element(By.XPATH, '//*[@id="1831"]/div[2]'.format(DESTINATARIO))
+            contato = driver.find_element(By.XPATH, '//*[@id="2095"]'.format(DESTINATARIO))
             contato.click()
             time.sleep(5)
 
@@ -131,9 +132,9 @@ def mensagem_obeya():
             campo_mensagem = driver.find_element(By.XPATH, '/html/body/app-root/app-home/ng-sidebar-container/div/div/app-chat/div[3]/div/div/div/div[3]/textarea')
             campo_mensagem.send_keys(MENSAGEM)
             time.sleep(3)
-            campo_de_envio = driver.find_element(By.XPATH, '/html/body/app-root/app-home/ng-sidebar-container/div/div/app-chat/div[3]/div/div/div/div[3]/button')
-            campo_de_envio.click()
-            time.sleep(3)
+            # campo_de_envio = driver.find_element(By.XPATH, '/html/body/app-root/app-home/ng-sidebar-container/div/div/app-chat/div[3]/div/div/div/div[3]/button')
+            # campo_de_envio.click()
+            # time.sleep(3)
 
             print("Mensagem enviada com sucesso para", DESTINATARIO)
             time.sleep(3)
@@ -141,8 +142,9 @@ def mensagem_obeya():
     except Exception as e:
             print("Erro ao enviar a mensagem:", e)
 
-    driver.quit()  # Fecha o navegador
+    driver.quit() 
     mensagem_obeya2()
+    # Fecha o navegador
 # **Agendar a mensagem para as 9h da manhã**
 # schedule.every().day.at("18:57").do(mensagem_obeya2)
 

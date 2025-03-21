@@ -16,11 +16,10 @@ import io
 
 # Criar o caminho dinâmico usando `os.getenv('USERNAME')`
 # chromedriver_path = r"C:\Users\{}\AppData\Local\SeleniumBasic\chromedriver.exe".format(os.getenv('USERNAME'))
-chromedriver_path = r"C:\Users\marce\Downloads\chrome-win64\chrome-win64\chromedriver.exe"
 
-# Criar um serviço com o caminho do ChromeDriver
-service = Service(chromedriver_path)
-driver = webdriver.Chrome(service=service)
+# # Criar um serviço com o caminho do ChromeDriver
+# service = Service(chromedriver_path)
+# driver = webdriver.Chrome(service=service)
 
 # Credenciais
 # BEEHOME_URL = "https://pernambucanas.mybeehome.com/login"
@@ -31,8 +30,8 @@ driver = webdriver.Chrome(service=service)
 # MENSAGEM = "Segue projeção Separação"
 
 def loops():
+   mensagem_obeya() 
     
-    mensagem_obeya()
 # **Agendar a mensagem para as 9h da manhã**
 # schedule.every().day.at("18:57").do(mensagem_obeya2)
 
